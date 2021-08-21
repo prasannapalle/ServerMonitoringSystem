@@ -15,8 +15,8 @@ public class QueryTool {
         String path = args[0];
         String ipaddress = args[1];
         String cpuid = args[2];
-        String time_start = args[3];
-        String time_end = args[4];
+        String time_start = args[3]+" "+args[4];
+        String time_end = args[5]+" "+args[6];
 
         searchLogs(path,ipaddress,cpuid,time_start,time_end);
     }
@@ -32,6 +32,7 @@ public class QueryTool {
             File file = new File("path" + "/" + filename);
             if (file.exists()) {
                 List<Line> lines = Unix4j.grep(String.valueOf(time_start_in_long), file).toLineList();
+
             }
         }
         catch (Exception exception){
@@ -44,8 +45,8 @@ public class QueryTool {
     {
         long timestamp_long;
         try {
-            SimpleDateFormat smp = new SimpleDateFormat("mm/dd/yyyy");
-            Date dt = smp.parse(smp.format(timeval));
+            SimpleDateFormat smp = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+            Date dt = smp.parse(timeval);
             timestamp_long = new Timestamp(dt.getTime()).getTime();
         }
         catch(ParseException parseException)
