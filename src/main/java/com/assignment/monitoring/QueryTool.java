@@ -6,25 +6,45 @@ import java.io.File;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class QueryTool {
     public static void main(String[] args)
     {
-        String path = args[0];
-        String ipaddress = args[1];
-        String cpuid = args[2];
-        String time_start = args[3]+" "+args[4];
-        String time_end = args[5]+" "+args[6];
-
-        ArrayList<String> solutionSet = searchLogs(path,ipaddress,cpuid,time_start,time_end);
-        System.out.println("CPU"+cpuid+ " " + "usage on "+ ipaddress + " :");
-        for(String str : solutionSet)
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Any of the below Commands: ");
+        System.out.println("1. Enter Query in Format : QUERY <I-P Address> <CPU-ID> <Start_date(MM-DD-YYYY HH:MM)> <End_date(MM-DD-YYYY HH:MM)>");
+        System.out.println("2. exit : To exit from the application");
+        String input = sc.nextLine();
+        while(true)
         {
-            System.out.print(str + "\t");
-        }
+            if(input.toLowerCase().equals("exit"))
+            {
+                break;
+            }
+            else if(args.length == 6)
+            {
+
+                String path = args[0];
+                String ipaddress = args[1];
+                String cpuid = args[2];
+                String time_start = args[3]+" "+args[4];
+                String time_end = args[5]+" "+args[6];
+
+                ArrayList<String> solutionSet = searchLogs(path,ipaddress,cpuid,time_start,time_end);
+                System.out.println("CPU"+cpuid+ " " + "usage on "+ ipaddress + " :");
+                for(String str : solutionSet)
+                {
+                    System.out.print(str + "\t");
+                }
+            }
+            else{
+                System.out.println("Incorrect Commands : <Enter Any of the below Commands>: ");
+                System.out.println("1. Enter Query in Format : QUERY <I-P Address> <CPU-ID> <Start_date(MM-DD-YYYY HH:MM)> <End_date(MM-DD-YYYY HH:MM)>");
+                System.out.println("2. Enter exit to exit from the application");
+            }
+            }
+
     }
 
     static ArrayList<String> searchLogs(String path, String ipaddress, String cpuid, String time_start, String time_end) {

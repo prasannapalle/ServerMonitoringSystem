@@ -15,11 +15,9 @@ public static void main(String[] args)
     {
         Date date = new Date();
         Timestamp ts = new Timestamp(date.getTime());
-//        System.out.println(ts.getTime());
-        System.out.println(args[0]);
-        for(int i=0;i<1;i++)
+        for(int i=0;i<1000;i++)
         {
-            generateLog(1,args[0]);
+            generateLog(i,args[0]);
         }
     }
 
@@ -29,7 +27,7 @@ public static void main(String[] args)
             File f = new File(dirpath + "/" + ipaddress.replace(".","_")+"_LOG");
             FileWriter fw = new FileWriter(f);
             fw.write("timestamp"+"\t"+"ip"+"\t"+"cpu_id"+"\t"+"usage"+"\n");
-            for(int i=0;i<10;i++)
+            for(int i=0;i<24*60;i++)
             {
                 long timeinlong =  getTimestamp(i);
                 fw.write(timeinlong+"\t"+ipaddress+"\t"+0+"\t"+generaterandomnumber()+"\n");
@@ -52,7 +50,7 @@ public static void main(String[] args)
                     "dd/MM/yyyy");
             Date dt = formatter.parse(formatter.format(date));
             futureDate = new Date(dt.getTime() + num * 60000);
-            System.out.print(futureDate);
+//            System.out.print(futureDate);
         }
         catch (ParseException parseException)
         {
