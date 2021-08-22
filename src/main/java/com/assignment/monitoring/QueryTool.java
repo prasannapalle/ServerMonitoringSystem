@@ -39,7 +39,7 @@ public class QueryTool {
                     }
                     continue;
                 } else {
-                    System.out.println(input.split(" ").length);
+//                    System.out.println(input.split(" ").length);
                     System.out.println("Incorrect Commands :");
 
                     continue;
@@ -63,7 +63,7 @@ public class QueryTool {
             long diffMs = dt2.getTime() - dt1.getTime();
             long diffSec = diffMs / 1000;
             long mindifference = diffSec / 60;
-            System.out.println(mindifference);
+//            System.out.println(mindifference);
             long time_end_in_long = getTimestampLong(time_end);
             String filename = getFilename(ipaddress);
             File file = new File(path + "/" + filename);
@@ -94,9 +94,9 @@ public class QueryTool {
         String log = "";
         for (Line line : lines) {
 
-            System.out.println("Line is " + line.getContent());
+//            System.out.println("Line is " + line.getContent());
             String[] strings = line.getContent().split("\t");
-            System.out.println(strings[2] + " " + cpuid);
+//            System.out.println(strings[2] + " " + cpuid);
             if (strings[2].equals(cpuid)) {
                 log = "(" + time_start + "," + " " + strings[3] + "%" + ")";
             }
