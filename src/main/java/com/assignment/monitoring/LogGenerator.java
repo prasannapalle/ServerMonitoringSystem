@@ -21,6 +21,10 @@ public static void main(String[] args)
         }
     }
 
+    /*
+    Method - generateLog writes logs into the file with the required values
+    Params - Ipaddress of the Server, Directory path of the folder to store files
+     */
     static void generateLog(int val,String dirpath) {
         try {
             String ipaddress = generateipaddress(val);
@@ -39,6 +43,11 @@ public static void main(String[] args)
         }
     }
 
+    /*
+    getTimestamp - Takes each minute and converts the Date in the long format of the timestamp
+    Return value - Long
+    Params - Each Minute
+     */
     private static long getTimestamp(int num)
     {
         Date futureDate = new Date();
@@ -60,11 +69,20 @@ public static void main(String[] args)
         return new Timestamp(futureDate.getTime()).getTime();
     }
 
+    /*
+    generateipaddress - the ipaddress of the server is generated
+    Params - The random number
+    Return Value - The Ipaddress (String)
+     */
     private static String generateipaddress(int num)
     {
     return "192.115"+"."+String.valueOf(num/256)+"."+String.valueOf(num%256);
     }
 
+    /*
+    generaterandomnumber - generates random number for the CPU usage
+    Return value - integer
+     */
     private static int generaterandomnumber()
     {
         Random random = new Random();

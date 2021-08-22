@@ -8,7 +8,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/*
+Takes either Query/ Exit command and retrieves the information from log files accordingly
+ */
 public class QueryTool {
+    /*
+    The main class - Command Line tool
+    Out puts the value desired from the query
+     */
     public static void main(String[] args)
     {
         try {
@@ -53,6 +60,10 @@ public class QueryTool {
 
     }
 
+    /*
+    searchLogs - uses the grep command to search the words in the file and retrieves the specific row
+    Return value - ArrayList<String> - Contains the logs of the particular server
+     */
     static ArrayList<String> searchLogs(String path, String ipaddress, String cpuid, String time_start, String time_end) {
         ArrayList<String> logArray = new ArrayList<String>();
         try {
@@ -90,6 +101,10 @@ public class QueryTool {
         return logArray;
     }
 
+    /*
+    extract - extracts the specific log of the CPU in the same server
+    Return Value - Log (String)
+     */
     private static String extract(List<Line> lines,String  cpuid,String time_start) {
         String log = "";
         for (Line line : lines) {
@@ -104,7 +119,10 @@ public class QueryTool {
         return log;
 
     }
-
+/*
+getTimestampLong - converts the date format string into timestamp
+returns the long value of the timestamp
+ */
     private static long getTimestampLong(String timeval)
     {
         long timestamp_long;
@@ -122,6 +140,10 @@ public class QueryTool {
         return timestamp_long;
     }
 
+    /*
+    getFilename - Forms the filename with the help of the server ip address
+    Return Value - File name (String)
+     */
     private static String getFilename(String ipaddr)
     {
         return ipaddr.replace(".","_")+"_LOG";
